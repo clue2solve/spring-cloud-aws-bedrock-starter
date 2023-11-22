@@ -22,9 +22,9 @@ public class SessionTokenAwsCredentialsConfig {
     @ConditionalOnMissingBean
     public AWSCredentialsProvider awsCredentialsProvider() {
         return new AWSStaticCredentialsProvider(new BasicSessionCredentials(
-                properties.getAccessKey(),
-                properties.getSecretKey(),
-                properties.getSessionToken()
+                properties.accessKey(),
+                properties.secretKey(),
+                properties.sessionToken()
         ));
     }
 }

@@ -22,8 +22,8 @@ public class BasicAwsCredentialsConfig {
     @ConditionalOnMissingBean
     public AWSCredentialsProvider awsCredentialsProvider() {
         return new AWSStaticCredentialsProvider(new BasicAWSCredentials(
-                properties.getAccessKey(),
-                properties.getSecretKey()
+                properties.accessKey(),
+                properties.secretKey()
         ));
     }
 }
