@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>io.clue2solve</groupId>
-    <artifactId>aws-bedrock-springtboot-starter</artifactId>
+    <artifactId>aws-bedrock-springboot-starter</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>aws-bedrock-springtboot-starter</name>
     <description>aws-bedrock-springtboot-starter</description>

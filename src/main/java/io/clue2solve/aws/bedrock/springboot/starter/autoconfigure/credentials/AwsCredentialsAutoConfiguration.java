@@ -1,4 +1,4 @@
-package io.clue2solve.aws.bedrock.springboot.starter.autoconfigure;
+package io.clue2solve.aws.bedrock.springboot.starter.autoconfigure.credentials;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
