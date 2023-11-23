@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ConditionalOnProperty(name = "aws.bedrock.model.id", havingValue = "jurassic2")
+@ConditionalOnProperty(name = "aws.bedrock.model.id", havingValue = "ai21.j2-mid-v1")
 public class JurassicConfig {
 
     @Bean
