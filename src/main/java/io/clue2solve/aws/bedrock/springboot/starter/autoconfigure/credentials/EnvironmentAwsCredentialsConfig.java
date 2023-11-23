@@ -1,4 +1,4 @@
-package io.clue2solve.aws.bedrock.springboot.starter.autoconfigure;
+package io.clue2solve.aws.bedrock.springboot.starter.autoconfigure.credentials;
 
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.auth.EnvironmentVariableCredentialsProvider;
