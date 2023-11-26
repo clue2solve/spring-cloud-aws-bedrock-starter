@@ -40,8 +40,6 @@ public class BedrockClientConfig {
     @Bean
     // @ConditionalOnProperty(name = "bedrock.client.type", havingValue = "sync")
     public BedrockRuntimeClient bedrockRuntimeClient() {
-        System.out.println("Creating BedrockRuntimeClient bean");
-
         return BedrockRuntimeClient.builder()
                 .region(Region.of(region))
                 .credentialsProvider(awsCredentialsProvider)
