@@ -9,14 +9,12 @@ import software.amazon.awssdk.services.bedrockruntime.model.InvokeModelRequest;
 import software.amazon.awssdk.services.bedrockruntime.model.InvokeModelResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import org.springframework.beans.factory.annotation.Autowired;
 
 public class JurassicService {
 
     private final BedrockRuntimeClient client;
     private final JurassicProperties properties;
 
-    @Autowired
     public JurassicService(BedrockRuntimeClient client, JurassicProperties properties) {
         this.client = client;
         this.properties = properties;
