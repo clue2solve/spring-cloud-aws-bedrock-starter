@@ -8,11 +8,13 @@ import com.amazonaws.auth.AWSCredentialsProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ConditionalOnProperty(name = "aws.credentials.provider", havingValue = "session")
+@EnableConfigurationProperties(AwsCredentialsProperties.class)
 public class SessionTokenAwsCredentialsConfig {
 
     @Autowired
@@ -22,9 +24,9 @@ public class SessionTokenAwsCredentialsConfig {
     @ConditionalOnMissingBean
     public AWSCredentialsProvider awsCredentialsProvider() {
         return new AWSStaticCredentialsProvider(new BasicSessionCredentials(
-                properties.accessKey(),
-                properties.secretKey(),
-                properties.sessionToken()
+                properties.getAccessKey(),
+                properties.getSecretKey(),
+                properties.getSessionToken()
         ));
     }
 }

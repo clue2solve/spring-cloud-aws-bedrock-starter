@@ -1,6 +1,8 @@
 package io.clue2solve.aws.bedrock.springboot.starter.service;
 
 
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import io.clue2solve.aws.bedrock.springboot.starter.config.ClaudeProperties;
@@ -13,6 +15,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class ClaudeService {
+    private static final Logger logger = LoggerFactory.getLogger(ClaudeService.class);
 
     private final BedrockRuntimeClient client;
     private final ClaudeProperties properties;
@@ -20,6 +23,7 @@ public class ClaudeService {
     public ClaudeService(BedrockRuntimeClient client, ClaudeProperties properties) {
         this.client = client;
         this.properties = properties;
+        logger.info("Instantiating ClaudeService");
     }
 
     public String invokeClaude(String prompt) throws JsonProcessingException {

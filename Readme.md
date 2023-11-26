@@ -15,14 +15,14 @@ aws.credentials.secretKey=YOUR_SECRET_KEY
 ```
 
 
-### Claude Model Params 
+### Properties that will enable ClaudeService
 ```properties
-aws.bedrock.model.claude.prompt=Human: Assistant:
+aws.bedrock.model.id=anthropic.claude-v2
+aws.bedrock.model.claude.prompt=defaultPrompt
 aws.bedrock.model.claude.temperature=0.5
-aws.bedrock.model.claude.topP=0.9
-aws.bedrock.model.claude.topK=10
-aws.bedrock.model.claude.maxTokensToSample=200
-aws.bedrock.model.claude.stopSequences=\n\nHuman:
+aws.bedrock.model.claude.topP=0.5
+aws.bedrock.model.claude.topK=50
+aws.bedrock.model.claude.maxTokensToSample=100
 ```
 
 ### Jurasic Model Params
