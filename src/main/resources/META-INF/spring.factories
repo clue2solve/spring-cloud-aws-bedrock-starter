@@ -1,7 +1,4 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-io.clue2solve.aws.bedrock.springboot.starter.autoconfigure.credentials.BasicAwsCredentialsConfig,\
-io.clue2solve.aws.bedrock.springboot.starter.autoconfigure.credentials.EnvironmentAwsCredentialsConfig,\
-io.clue2solve.aws.bedrock.springboot.starter.autoconfigure.credentials.SessionTokenAwsCredentialsConfig,\
 io.clue2solve.aws.bedrock.springboot.starter.autoconfigure.clients.BedrockClientConfig,\
 io.clue2solve.aws.bedrock.springboot.starter.autoconfigure.ClaudeConfig,\
 io.clue2solve.aws.bedrock.springboot.starter.autoconfigure.JurassicConfig,\

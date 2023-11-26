@@ -11,46 +11,44 @@ import software.amazon.awssdk.services.bedrockruntime.model.InvokeModelRequest;
 import software.amazon.awssdk.services.bedrockruntime.model.InvokeModelResponse;
 
 public class LlamaService {
-    private final BedrockRuntimeClient client;
-    private final LlamaProperties properties;
 
-    public LlamaService(BedrockRuntimeClient client, LlamaProperties properties) {
-        this.client = client;
-        this.properties = properties;
-    }
+	private final BedrockRuntimeClient client;
 
-    public String invokeLlama(String prompt) throws JsonProcessingException {
-        try {
-            ObjectMapper mapper = new ObjectMapper();
-            ObjectNode payload = mapper.createObjectNode();
-            payload.put("prompt", properties.prompt() + prompt);
-            payload.put("maxTokens", properties.maxTokens());
-            payload.put("temperature", properties.temperature());
+	private final LlamaProperties properties;
 
-            SdkBytes body = SdkBytes.fromUtf8String(payload.toString());
+	public LlamaService(BedrockRuntimeClient client, LlamaProperties properties) {
+		this.client = client;
+		this.properties = properties;
+	}
 
-            InvokeModelRequest request = InvokeModelRequest.builder()
-                    .modelId(properties.modelId())
-                    .body(body)
-                    .build();
+	public String invokeLlama(String prompt) throws JsonProcessingException {
+		try {
+			ObjectMapper mapper = new ObjectMapper();
+			ObjectNode payload = mapper.createObjectNode();
+			payload.put("prompt", properties.prompt() + prompt);
+			payload.put("maxTokens", properties.maxTokens());
+			payload.put("temperature", properties.temperature());
 
-            InvokeModelResponse response = client.invokeModel(request);
+			SdkBytes body = SdkBytes.fromUtf8String(payload.toString());
 
-            ObjectNode responseBody = new ObjectMapper().readValue(response.body().asUtf8String(), ObjectNode.class);
+			InvokeModelRequest request = InvokeModelRequest.builder().modelId(properties.modelId()).body(body).build();
 
-            String completion = responseBody
-                    .get("completions").elements().next()
-                    .get("data")
-                    .get("text").asText();
+			InvokeModelResponse response = client.invokeModel(request);
 
-            return completion;
+			ObjectNode responseBody = new ObjectMapper().readValue(response.body().asUtf8String(), ObjectNode.class);
 
-        } catch (AwsServiceException e) {
-            System.err.println(e.awsErrorDetails().errorMessage());
-            System.exit(1);
-        }
-        return null;
-    }
-    
-    // Add methods to interact with the llama model here
+			String completion = responseBody.get("completions").elements().next().get("data").get("text").asText();
+
+			return completion;
+
+		}
+		catch (AwsServiceException e) {
+			System.err.println(e.awsErrorDetails().errorMessage());
+			System.exit(1);
+		}
+		return null;
+	}
+
+	// Add methods to interact with the llama model here
+
 }

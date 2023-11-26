@@ -12,44 +12,41 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class JurassicService {
 
-    private final BedrockRuntimeClient client;
-    private final JurassicProperties properties;
+	private final BedrockRuntimeClient client;
 
-    public JurassicService(BedrockRuntimeClient client, JurassicProperties properties) {
-        this.client = client;
-        this.properties = properties;
-    }
+	private final JurassicProperties properties;
 
-    public String invokeJurassic2(String prompt) throws JsonProcessingException {
-        try {
-            ObjectMapper mapper = new ObjectMapper();
-            ObjectNode payload = mapper.createObjectNode();
-            payload.put("prompt", properties.prompt() + prompt);
-            payload.put("maxTokens", properties.maxTokens());
-            payload.put("temperature", properties.temperature());
+	public JurassicService(BedrockRuntimeClient client, JurassicProperties properties) {
+		this.client = client;
+		this.properties = properties;
+	}
 
-            SdkBytes body = SdkBytes.fromUtf8String(payload.toString());
+	public String invokeJurassic2(String prompt) throws JsonProcessingException {
+		try {
+			ObjectMapper mapper = new ObjectMapper();
+			ObjectNode payload = mapper.createObjectNode();
+			payload.put("prompt", properties.prompt() + prompt);
+			payload.put("maxTokens", properties.maxTokens());
+			payload.put("temperature", properties.temperature());
 
-            InvokeModelRequest request = InvokeModelRequest.builder()
-                    .modelId(properties.modelId())
-                    .body(body)
-                    .build();
+			SdkBytes body = SdkBytes.fromUtf8String(payload.toString());
 
-            InvokeModelResponse response = client.invokeModel(request);
+			InvokeModelRequest request = InvokeModelRequest.builder().modelId(properties.modelId()).body(body).build();
 
-            ObjectNode responseBody = new ObjectMapper().readValue(response.body().asUtf8String(), ObjectNode.class);
+			InvokeModelResponse response = client.invokeModel(request);
 
-            String completion = responseBody
-                    .get("completions").elements().next()
-                    .get("data")
-                    .get("text").asText();
+			ObjectNode responseBody = new ObjectMapper().readValue(response.body().asUtf8String(), ObjectNode.class);
 
-            return completion;
+			String completion = responseBody.get("completions").elements().next().get("data").get("text").asText();
 
-        } catch (AwsServiceException e) {
-            System.err.println(e.awsErrorDetails().errorMessage());
-            System.exit(1);
-        }
-        return null;
-    }
+			return completion;
+
+		}
+		catch (AwsServiceException e) {
+			System.err.println(e.awsErrorDetails().errorMessage());
+			System.exit(1);
+		}
+		return null;
+	}
+
 }

@@ -7,14 +7,8 @@ import java.util.List;
 
 @ConfigurationProperties(prefix = "aws.bedrock.model.claude")
 public record ClaudeProperties(String modelId, String prompt, double temperature, double topP, int topK,
-                               int maxTokensToSample, List<String> stopSequences) {
-    public ClaudeProperties() {
-        this("anthropic.claude-v2",
-                "defaultPrompt",
-                0.5,
-                0.5,
-                50,
-                100,
-                Collections.emptyList());
-    }
+		int maxTokensToSample, List<String> stopSequences) {
+	public ClaudeProperties() {
+		this("anthropic.claude-v2", "defaultPrompt", 0.5, 0.5, 50, 100, Collections.emptyList());
+	}
 }

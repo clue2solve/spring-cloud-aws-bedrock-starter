@@ -7,5 +7,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@EnableConfigurationProperties({ClaudeProperties.class, JurassicProperties.class, LlamaProperties.class})
-public class ModelPropertiesAutoConfiguration {}
+@EnableConfigurationProperties({ ClaudeProperties.class, JurassicProperties.class, LlamaProperties.class })
+public class ModelPropertiesAutoConfiguration {
+
+}
