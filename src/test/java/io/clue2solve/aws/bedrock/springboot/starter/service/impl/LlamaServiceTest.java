@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.junit.jupiter.DisabledIf;
 import org.springframework.test.context.junit.jupiter.EnabledIf;
 
 import static org.junit.jupiter.api.Assertions.fail;
@@ -17,6 +18,9 @@ import static org.junit.jupiter.api.Assertions.fail;
 @EnabledIf(
 		expression = "#{environment.getActiveProfiles().length > 0 && {'authorized'}.contains(environment.getActiveProfiles()[0])}",
 		loadContext = true)
+@DisabledIf(
+		expression = "#{!environment.containsProperty('AWS_ACCESS_KEY_ID') || !environment.containsProperty('AWS_SECRET_ACCESS_KEY')}",
+		reason = "Must have AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY environment variables defined to execute this test!")
 class LlamaServiceTest {
 
 	private final static Logger log = LoggerFactory.getLogger(LlamaServiceTest.class);
