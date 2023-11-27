@@ -1,7 +1,8 @@
-package io.clue2solve.aws.bedrock.springboot.starter.service;
+package io.clue2solve.aws.bedrock.springboot.starter.service.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.clue2solve.aws.bedrock.springboot.starter.config.JurassicProperties;
+import io.clue2solve.aws.bedrock.springboot.starter.service.BedrockService;
 import software.amazon.awssdk.services.bedrockruntime.BedrockRuntimeClient;
 import software.amazon.awssdk.awscore.exception.AwsServiceException;
 import software.amazon.awssdk.core.SdkBytes;
@@ -10,7 +11,7 @@ import software.amazon.awssdk.services.bedrockruntime.model.InvokeModelResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-public class JurassicService {
+public class JurassicService implements BedrockService {
 
 	private final BedrockRuntimeClient client;
 
@@ -21,7 +22,8 @@ public class JurassicService {
 		this.properties = properties;
 	}
 
-	public String invokeJurassic2(String prompt) throws JsonProcessingException {
+	@Override
+	public String invoke(String prompt) throws JsonProcessingException {
 		try {
 			ObjectMapper mapper = new ObjectMapper();
 			ObjectNode payload = mapper.createObjectNode();

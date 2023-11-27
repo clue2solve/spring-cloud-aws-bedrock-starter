@@ -1,5 +1,6 @@
-package io.clue2solve.aws.bedrock.springboot.starter.service;
+package io.clue2solve.aws.bedrock.springboot.starter.service.impl;
 
+import io.clue2solve.aws.bedrock.springboot.starter.service.BedrockService;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -13,7 +14,7 @@ import software.amazon.awssdk.services.bedrockruntime.model.InvokeModelResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-public class ClaudeService {
+public class ClaudeService implements BedrockService {
 
 	private static final Logger logger = LoggerFactory.getLogger(ClaudeService.class);
 
@@ -27,7 +28,8 @@ public class ClaudeService {
 		logger.info("Instantiating ClaudeService");
 	}
 
-	public String invokeClaude(String prompt) throws JsonProcessingException {
+	@Override
+	public String invoke(String prompt) throws JsonProcessingException {
 		try {
 			String enclosedPrompt = "Human: " + prompt + "\n\nAssistant:";
 			ObjectMapper mapper = new ObjectMapper();
