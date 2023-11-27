@@ -12,9 +12,11 @@ This is a [Spring Cloud](https://spring.io/projects/spring-cloud) Starter for th
 Just provide the right properties as defined below and the appropriate [AWSCredentialsProvider](https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/auth/AWSCredentialsProvider.html) object will be activated for injection into your Spring objects. An example for the creation of [BasicAwsCredentials](https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/auth/BasicAWSCredentials.html) is shown below. You can follow the link below to understand all the other supported credential models. 
 
 ```properties
-# For BasicAwsCredentialsConfig
+# for BasicAwsCredentials
 spring.cloud.aws.credentials.access-key=YOUR_ACCESS_KEY
 spring.cloud.aws.credentials.secret-key=YOUR_SECRET_KEY
+
+# an optional method to do the same
 spring.cloud.aws.credentials.profile.name=YOUR_PROFILE
 spring.cloud.aws.credentials.profile.path=~/.aws/credentials
 ```
@@ -24,10 +26,7 @@ spring.cloud.aws.credentials.profile.path=~/.aws/credentials
 
 ```properties
 aws.bedrock.model.id=anthropic.claude-v2
-aws.bedrock.model.claude.prompt=defaultPrompt
 aws.bedrock.model.claude.temperature=0.5
-aws.bedrock.model.claude.topP=0.5
-aws.bedrock.model.claude.topK=50
 aws.bedrock.model.claude.maxTokensToSample=100
 ```
 
@@ -47,17 +46,13 @@ One can use the activated clients to interact with the AWS Bedrock service based
 
 The best part of the Starter is the activation of a service object which has the `invoke` method.
 
-All you need to do is provide the properties like one one of the sets below to activate the appropriate implementations of the BedrockService Interface ( Claude, Jurasic or Llama).
+All you need to do is provide the properties like one of the sets below to activate the appropriate implementations of the BedrockService Interface ( Claude, Jurasic or Llama).
 
 #### Claude model parameters
 
 ```properties
 aws.bedrock.model.id=anthropic.claude-v2
-
-aws.bedrock.model.claude.prompt=defaultPrompt
 aws.bedrock.model.claude.temperature=0.5
-aws.bedrock.model.claude.topP=0.5
-aws.bedrock.model.claude.topK=50
 aws.bedrock.model.claude.maxTokensToSample=100
 ```
 
@@ -65,8 +60,6 @@ aws.bedrock.model.claude.maxTokensToSample=100
 
 ```properties 
 aws.bedrock.model.id=ai21.j2-mid-v1
-
-aws.bedrock.model.jurassic.prompt=Your prompt here
 aws.bedrock.model.jurassic.maxTokens=200
 aws.bedrock.model.jurassic.temperature=0.5
 ```
@@ -75,8 +68,6 @@ aws.bedrock.model.jurassic.temperature=0.5
 
 ```properties
 aws.bedrock.model.id=anthropic.llama2-v1
-
-aws.bedrock.model.llama2.prompt=Your prompt here
 aws.bedrock.model.llama2.maxTokens=200
 aws.bedrock.model.llama2.temperature=0.5
 ```
@@ -86,19 +77,29 @@ aws.bedrock.model.llama2.temperature=0.5
 Once activated, the Service can be autowired and used as below.
 
 ```java
-private final ClaudeService claudeService;
+@RestController
+public class ClaudeController {
 
-@Autowired
-public ClaudeController(ClaudeService claudeService) {
-    this.claudeService = claudeService;
-}
+    private final ClaudeService claudeService;
 
-@GetMapping("/invoke")
-public String invokeClaude(@RequestParam String prompt) {
-    try {
-        return claudeService.invokeClaude(prompt);
-    } catch (Exception e) {
-        return "Error invoking Claude: " + e.getMessage();
+    @Autowired
+    public ClaudeController(ClaudeService claudeService) {
+        this.claudeService = claudeService;
+    }
+
+    @GetMapping("/invoke")
+    public String invoke(@RequestParam String prompt) {
+        try {
+            return claudeService.invoke(prompt);
+        } catch (Exception e) {
+            return "Error invoking Claude: " + e.getMessage();
+        }
     }
 }
+```
+
+You might also want to take a look at and/or run the Service [tests](src/test/java/io/clue2solve/aws/bedrock/springboot/starter/service/impl).  To do that, make sure you've set the appropriate `AWS_*` environment variables, then execute
+
+```bash
+mvn test -Dspring.profiles.active=authorized
 ```

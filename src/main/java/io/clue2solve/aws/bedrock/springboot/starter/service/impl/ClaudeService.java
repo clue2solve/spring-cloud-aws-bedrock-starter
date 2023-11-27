@@ -4,19 +4,17 @@ import io.clue2solve.aws.bedrock.springboot.starter.service.BedrockService;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.node.ArrayNode;
 import io.clue2solve.aws.bedrock.springboot.starter.config.ClaudeProperties;
 import software.amazon.awssdk.services.bedrockruntime.BedrockRuntimeClient;
 import software.amazon.awssdk.awscore.exception.AwsServiceException;
 import software.amazon.awssdk.core.SdkBytes;
 import software.amazon.awssdk.services.bedrockruntime.model.InvokeModelRequest;
-import software.amazon.awssdk.services.bedrockruntime.model.InvokeModelResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class ClaudeService implements BedrockService {
 
-	private static final Logger logger = LoggerFactory.getLogger(ClaudeService.class);
+	private static final Logger log = LoggerFactory.getLogger(ClaudeService.class);
 
 	private final BedrockRuntimeClient client;
 
@@ -25,17 +23,16 @@ public class ClaudeService implements BedrockService {
 	public ClaudeService(BedrockRuntimeClient client, ClaudeProperties properties) {
 		this.client = client;
 		this.properties = properties;
-		logger.info("Instantiating ClaudeService");
+		log.info("Instantiating ClaudeService");
 	}
 
 	@Override
 	public String invoke(String prompt) throws JsonProcessingException {
 		try {
-			var enclosedPrompt = "Human: " + prompt + "\n\nAssistant:";
 			var mapper = new ObjectMapper();
 			var payload = mapper.createObjectNode();
-			payload.put("prompt", enclosedPrompt);
-			payload.put("max_tokens_to_sample", properties.maxTokensToSample());
+			payload.put("prompt", String.format("%s%n%s%n%s", properties.prePrompt(), prompt, properties.postPrompt()));
+			payload.put("max_tokens_to_sample", properties.maxTokens());
 			payload.put("temperature", properties.temperature());
 			// Create an ArrayNode and add elements to it
 			var stopSequencesNode = mapper.createArrayNode();
@@ -44,17 +41,16 @@ public class ClaudeService implements BedrockService {
 
 			var body = SdkBytes.fromUtf8String(payload.toString());
 
-			var request = InvokeModelRequest.builder().modelId(properties.modelId()).body(body).build();
+			var request = InvokeModelRequest.builder().modelId(properties.id()).body(body).build();
 
 			var response = client.invokeModel(request);
 
-			var responseBody = new ObjectMapper().readValue(response.body().asUtf8String(), ObjectNode.class);
+			var responseBody = mapper.readValue(response.body().asUtf8String(), ObjectNode.class);
 
 			return responseBody.get("completion").asText();
 		}
-		catch (AwsServiceException e) {
-			System.err.println(e.awsErrorDetails().errorMessage());
-			System.exit(1);
+		catch (AwsServiceException ase) {
+			log.error("Failed to obtain result from ClaudeService", ase);
 		}
 		return null;
 	}
