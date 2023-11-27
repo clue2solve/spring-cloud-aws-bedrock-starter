@@ -1,5 +1,6 @@
-# Aws Bedrock Springboot Starter
-### (Proposal to change it to : Spring Cloud AWS Bedrock Starter )
+# Spring Cloud AWS Bedrock Starter
+## Lets you use the AWS Bedrock Service with Spring Boot and Spring Cloud
+
 [![Alpha](https://img.shields.io/badge/Release-Alpha-darkred)](https://img.shields.io/badge/Release-Alpha-darkred) ![Github Action CI Workflow Status](https://github.com/clue2solve/aws-bedrock-springtboot-starter/actions/workflows/ci.yml/badge.svg) [![Known Vulnerabilities](https://snyk.io/test/github/clue2solve/aws-bedrock-springtboot-starter/badge.svg?style=plastic)](https://snyk.io/test/github/clue2solve/aws-bedrock-springtboot-starter) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ### Bedrock 
