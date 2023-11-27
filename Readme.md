@@ -2,8 +2,6 @@
 ### (Proposal to change it to : Spring Cloud AWS Bedrock Starter )
 [![Alpha](https://img.shields.io/badge/Release-Alpha-darkred)](https://img.shields.io/badge/Release-Alpha-darkred) ![Github Action CI Workflow Status](https://github.com/clue2solve/aws-bedrock-springtboot-starter/actions/workflows/ci.yml/badge.svg) [![Known Vulnerabilities](https://snyk.io/test/github/clue2solve/aws-bedrock-springtboot-starter/badge.svg?style=plastic)](https://snyk.io/test/github/clue2solve/aws-bedrock-springtboot-starter) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-> Consider renaming project to `spring-cloud-aws-bedrock-starter`!
-
 ### Bedrock 
 This project provides a developer friendly way to access the services of AWS Bedrock, an AWS service that provides a managed Language Model (LLM) service with a catalog of supported LLMs.
 This is a Spring Cloud Starter for the Bedrock service that removes all the boilerplate code required to access the service. It uses the standard Spring Cloud AWS Starter to provide the credentials and the AWS SDK, and the standards of Spring boot and Spring Cloud to provide the configuration and the auto-wiring of the service objects.
