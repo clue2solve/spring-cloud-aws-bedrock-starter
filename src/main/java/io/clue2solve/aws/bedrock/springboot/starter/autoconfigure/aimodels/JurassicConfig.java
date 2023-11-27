@@ -11,8 +11,9 @@ import org.springframework.context.annotation.Configuration;
 @ConditionalOnProperty(name = "aws.bedrock.model.id", havingValue = "ai21.j2-mid-v1")
 public class JurassicConfig {
 
-    @Bean
-    public JurassicService jurassicService(BedrockRuntimeClient client, JurassicProperties properties) {
-        return new JurassicService(client, properties);
-    }
+	@Bean
+	public JurassicService jurassicService(BedrockRuntimeClient client, JurassicProperties properties) {
+		return new JurassicService(client, properties);
+	}
+
 }

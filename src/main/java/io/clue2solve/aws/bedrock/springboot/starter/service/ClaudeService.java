@@ -1,6 +1,5 @@
 package io.clue2solve.aws.bedrock.springboot.starter.service;
 
-
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -15,47 +14,48 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class ClaudeService {
-    private static final Logger logger = LoggerFactory.getLogger(ClaudeService.class);
 
-    private final BedrockRuntimeClient client;
-    private final ClaudeProperties properties;
+	private static final Logger logger = LoggerFactory.getLogger(ClaudeService.class);
 
-    public ClaudeService(BedrockRuntimeClient client, ClaudeProperties properties) {
-        this.client = client;
-        this.properties = properties;
-        logger.info("Instantiating ClaudeService");
-    }
+	private final BedrockRuntimeClient client;
 
-    public String invokeClaude(String prompt) throws JsonProcessingException {
-        try {
-            String enclosedPrompt = "Human: " + prompt + "\n\nAssistant:";
-            ObjectMapper mapper = new ObjectMapper();
-            ObjectNode payload = mapper.createObjectNode();
-            payload.put("prompt", enclosedPrompt);
-            payload.put("max_tokens_to_sample", properties.maxTokensToSample());
-            payload.put("temperature", properties.temperature());
-            // Create an ArrayNode and add elements to it
-            ArrayNode stopSequencesNode = mapper.createArrayNode();
-            properties.stopSequences().forEach(stopSequencesNode::add);
-            payload.set("stop_sequences", stopSequencesNode);
+	private final ClaudeProperties properties;
 
-            SdkBytes body = SdkBytes.fromUtf8String(payload.toString());
+	public ClaudeService(BedrockRuntimeClient client, ClaudeProperties properties) {
+		this.client = client;
+		this.properties = properties;
+		logger.info("Instantiating ClaudeService");
+	}
 
-            InvokeModelRequest request = InvokeModelRequest.builder()
-                    .modelId(properties.modelId())
-                    .body(body)
-                    .build();
+	public String invokeClaude(String prompt) throws JsonProcessingException {
+		try {
+			String enclosedPrompt = "Human: " + prompt + "\n\nAssistant:";
+			ObjectMapper mapper = new ObjectMapper();
+			ObjectNode payload = mapper.createObjectNode();
+			payload.put("prompt", enclosedPrompt);
+			payload.put("max_tokens_to_sample", properties.maxTokensToSample());
+			payload.put("temperature", properties.temperature());
+			// Create an ArrayNode and add elements to it
+			ArrayNode stopSequencesNode = mapper.createArrayNode();
+			properties.stopSequences().forEach(stopSequencesNode::add);
+			payload.set("stop_sequences", stopSequencesNode);
 
-            InvokeModelResponse response = client.invokeModel(request);
+			SdkBytes body = SdkBytes.fromUtf8String(payload.toString());
 
-            ObjectNode responseBody = new ObjectMapper().readValue(response.body().asUtf8String(), ObjectNode.class);
+			InvokeModelRequest request = InvokeModelRequest.builder().modelId(properties.modelId()).body(body).build();
 
-            return responseBody.get("completion").asText();
+			InvokeModelResponse response = client.invokeModel(request);
 
-        } catch (AwsServiceException e) {
-            System.err.println(e.awsErrorDetails().errorMessage());
-            System.exit(1);
-        }
-        return null;
-    }
+			ObjectNode responseBody = new ObjectMapper().readValue(response.body().asUtf8String(), ObjectNode.class);
+
+			return responseBody.get("completion").asText();
+
+		}
+		catch (AwsServiceException e) {
+			System.err.println(e.awsErrorDetails().errorMessage());
+			System.exit(1);
+		}
+		return null;
+	}
+
 }

@@ -11,8 +11,9 @@ import org.springframework.context.annotation.Configuration;
 @ConditionalOnProperty(name = "aws.bedrock.model.id", havingValue = "anthropic.claude-v2")
 public class ClaudeConfig {
 
-    @Bean
-    public ClaudeService claudeService(BedrockRuntimeClient client, ClaudeProperties properties) {
-        return new ClaudeService(client, properties);
-    }
+	@Bean
+	public ClaudeService claudeService(BedrockRuntimeClient client, ClaudeProperties properties) {
+		return new ClaudeService(client, properties);
+	}
+
 }

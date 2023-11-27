@@ -11,8 +11,9 @@ import org.springframework.context.annotation.Configuration;
 @ConditionalOnProperty(name = "aws.bedrock.model.id", havingValue = "meta.llama2-13b-chat-v1")
 public class LlamaConfig {
 
-    @Bean
-    public LlamaService llamaService(BedrockRuntimeClient client, LlamaProperties properties) {
-        return new LlamaService(client, properties);
-    }
+	@Bean
+	public LlamaService llamaService(BedrockRuntimeClient client, LlamaProperties properties) {
+		return new LlamaService(client, properties);
+	}
+
 }
