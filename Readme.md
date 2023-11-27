@@ -73,3 +73,23 @@ aws.bedrock.model.llama2.temperature=0.5
 
 ```
 
+### Usage
+Once activated the Service can be autowired and used as below.
+
+```Java
+ private final ClaudeService claudeService;
+
+    @Autowired
+    public ClaudeController(ClaudeService claudeService) {
+        this.claudeService = claudeService;
+    }
+
+    @GetMapping("/invoke")
+    public String invokeClaude(@RequestParam String prompt) {
+        try {
+            return claudeService.invokeClaude(prompt);
+        } catch (Exception e) {
+            return "Error invoking Claude: " + e.getMessage();
+        }
+    }
+```
