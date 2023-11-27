@@ -33,7 +33,7 @@ aws.bedrock.model.claude.maxTokensToSample=100
 
 ### The Bedrock and BedrockRuntimeClient
 
-Once the right AWSCredentialsProvider is injected, you can expect the activation of the appropriate versions of the [BedrockClient](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/bedrock/BedrockClient.html) and the [BedrockRuntimeClient](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/bedrockruntime/BedrockRuntimeClient.html). These will be conditional on the `bedrock.client.type` property. The options there are `sync` and `async`, which drive the activation of the _regular_ or the _asynchronous_ versions of the clients. 
+Once the right AWSCredentialsProvider is injected, you can expect the activation of the appropriate versions of the [BedrockClient](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/bedrock/BedrockClient.html) and the [BedrockRuntimeClient](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/bedrockruntime/BedrockRuntimeClient.html). These will be conditional on the `bedrock.client.type` property. The options there are `sync` and `async`, which drive the activation of the _synchronous_ or the _asynchronous_ versions of the clients. 
 
 E.g.,
 
