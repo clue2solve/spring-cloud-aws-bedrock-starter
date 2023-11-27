@@ -19,7 +19,7 @@ import java.util.Optional;
 public record JurassicProperties(@Pattern(
 		regexp = "ai21.j2-grande-instruct|ai21.j2-jumbo-instruct|ai21.j2-mid|ai21.j2-mid-v1|ai21.j2-ultra|ai21.j2-ultra-v1") String id,
 		@Nullable String prePrompt, @Min(1) @Max(8192) Integer maxTokens,
-		@DecimalMin("0.1") @DecimalMax("1.0") Double temperature) {
+		@DecimalMin("0.0") @DecimalMax("1.0") Double temperature) {
 
 	public JurassicProperties(String id, String prePrompt, Integer maxTokens, Double temperature) {
 		this.id = Optional.ofNullable(id).orElse("ai21.j2-mid-v1");

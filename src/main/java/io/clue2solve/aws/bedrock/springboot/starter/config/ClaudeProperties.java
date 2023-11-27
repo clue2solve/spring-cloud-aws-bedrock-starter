@@ -14,7 +14,7 @@ import java.util.Optional;
 public record ClaudeProperties(
 		@Pattern(regexp = "anthropic.claude-instant-v1|anthropic.claude-v1|anthropic.claude-v2") String id,
 		@Nullable String prePrompt, @Nullable String postPrompt,
-		@DecimalMin("0.1") @DecimalMax("1.0") Double temperature, @Min(1) @Max(100000) Integer maxTokens,
+		@DecimalMin("0.0") @DecimalMax("1.0") Double temperature, @Min(1) @Max(100000) Integer maxTokens,
 		@Nullable List<String> stopSequences) {
 
 	public ClaudeProperties(String id, String prePrompt, String postPrompt, Double temperature, Integer maxTokens,

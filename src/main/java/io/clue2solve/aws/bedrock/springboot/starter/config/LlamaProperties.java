@@ -12,7 +12,7 @@ import java.util.Optional;
 @Validated
 @ConfigurationProperties(prefix = "aws.bedrock.model.llama")
 public record LlamaProperties(@Pattern(regexp = "meta.llama2-13b-chat-v1") String id,
-		@DecimalMin("0.1") @DecimalMax("1.0") Double topP, @DecimalMin("0.1") @DecimalMax("1.0") Double temperature,
+		@DecimalMin("0.0") @DecimalMax("1.0") Double topP, @DecimalMin("0.0") @DecimalMax("1.0") Double temperature,
 		@Min(1) @Max(4000) Integer maxTokens) {
 
 	public LlamaProperties(String id, Double topP, Double temperature, Integer maxTokens) {
