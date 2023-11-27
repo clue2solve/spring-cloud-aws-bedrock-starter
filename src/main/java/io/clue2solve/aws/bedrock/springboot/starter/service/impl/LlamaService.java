@@ -25,24 +25,21 @@ public class LlamaService implements BedrockService {
 	@Override
 	public String invoke(String prompt) throws JsonProcessingException {
 		try {
-			ObjectMapper mapper = new ObjectMapper();
-			ObjectNode payload = mapper.createObjectNode();
+			var mapper = new ObjectMapper();
+			var payload = mapper.createObjectNode();
 			payload.put("prompt", properties.prompt() + prompt);
 			payload.put("maxTokens", properties.maxTokens());
 			payload.put("temperature", properties.temperature());
 
-			SdkBytes body = SdkBytes.fromUtf8String(payload.toString());
+			var body = SdkBytes.fromUtf8String(payload.toString());
 
-			InvokeModelRequest request = InvokeModelRequest.builder().modelId(properties.modelId()).body(body).build();
+			var request = InvokeModelRequest.builder().modelId(properties.modelId()).body(body).build();
 
-			InvokeModelResponse response = client.invokeModel(request);
+			var response = client.invokeModel(request);
 
-			ObjectNode responseBody = new ObjectMapper().readValue(response.body().asUtf8String(), ObjectNode.class);
+			var responseBody = new ObjectMapper().readValue(response.body().asUtf8String(), ObjectNode.class);
 
-			String completion = responseBody.get("completions").elements().next().get("data").get("text").asText();
-
-			return completion;
-
+			return responseBody.get("completions").elements().next().get("data").get("text").asText();
 		}
 		catch (AwsServiceException e) {
 			System.err.println(e.awsErrorDetails().errorMessage());

@@ -31,27 +31,26 @@ public class ClaudeService implements BedrockService {
 	@Override
 	public String invoke(String prompt) throws JsonProcessingException {
 		try {
-			String enclosedPrompt = "Human: " + prompt + "\n\nAssistant:";
-			ObjectMapper mapper = new ObjectMapper();
-			ObjectNode payload = mapper.createObjectNode();
+			var enclosedPrompt = "Human: " + prompt + "\n\nAssistant:";
+			var mapper = new ObjectMapper();
+			var payload = mapper.createObjectNode();
 			payload.put("prompt", enclosedPrompt);
 			payload.put("max_tokens_to_sample", properties.maxTokensToSample());
 			payload.put("temperature", properties.temperature());
 			// Create an ArrayNode and add elements to it
-			ArrayNode stopSequencesNode = mapper.createArrayNode();
+			var stopSequencesNode = mapper.createArrayNode();
 			properties.stopSequences().forEach(stopSequencesNode::add);
 			payload.set("stop_sequences", stopSequencesNode);
 
-			SdkBytes body = SdkBytes.fromUtf8String(payload.toString());
+			var body = SdkBytes.fromUtf8String(payload.toString());
 
-			InvokeModelRequest request = InvokeModelRequest.builder().modelId(properties.modelId()).body(body).build();
+			var request = InvokeModelRequest.builder().modelId(properties.modelId()).body(body).build();
 
-			InvokeModelResponse response = client.invokeModel(request);
+			var response = client.invokeModel(request);
 
-			ObjectNode responseBody = new ObjectMapper().readValue(response.body().asUtf8String(), ObjectNode.class);
+			var responseBody = new ObjectMapper().readValue(response.body().asUtf8String(), ObjectNode.class);
 
 			return responseBody.get("completion").asText();
-
 		}
 		catch (AwsServiceException e) {
 			System.err.println(e.awsErrorDetails().errorMessage());
