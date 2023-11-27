@@ -53,7 +53,7 @@ public class BedrockClientConfig {
 	public BedrockAsyncClient bedrockAsyncClient() {
 		return BedrockAsyncClient.builder()
 			.region(Region.of(region))
-			.credentialsProvider((AwsCredentialsProvider) awsCredentialsProvider)
+			.credentialsProvider(awsCredentialsProvider)
 			.build();
 	}
 

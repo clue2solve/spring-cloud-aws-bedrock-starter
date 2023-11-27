@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ConditionalOnProperty(name = "aws.bedrock.model.id", havingValue = "meta.llama2-13b-chat-v1")
+@ConditionalOnProperty(name = "aws.bedrock.model.llama.id", havingValue = "meta.llama2-13b-chat-v1")
 public class LlamaConfig {
 
 	@Bean
