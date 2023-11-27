@@ -46,7 +46,7 @@ One can use the activated clients to interact with the AWS Bedrock service based
 
 The best part of the Starter is the activation of a service object which has the `invoke` method.
 
-All you need to do is provide the properties like one of the sets below to activate the appropriate implementations of the BedrockService Interface ( Claude, Jurasic or Llama).
+All you need to do is provide the properties like one of the sets below to activate the appropriate implementations of the BedrockService Interface ( Claude, Jurassic, Llama, or Titan for now).
 
 #### Claude model parameters
 
@@ -70,6 +70,14 @@ aws.bedrock.model.jurassic.temperature=0.5
 aws.bedrock.model.id=anthropic.llama2-v1
 aws.bedrock.model.llama2.maxTokens=200
 aws.bedrock.model.llama2.temperature=0.5
+```
+
+#### Titan model parameters
+
+```properties
+aws.bedrock.model.id=amazon.titan-text-express-v1
+aws.bedrock.model.llama2.maxTokens=4096
+aws.bedrock.model.llama2.temperature=0.0
 ```
 
 ### Usage
