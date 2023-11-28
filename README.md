@@ -51,7 +51,7 @@ All you need to do is provide the properties like one of the sets below to activ
 #### Claude model parameters
 
 ```properties
-aws.bedrock.model.id=anthropic.claude-v2
+aws.bedrock.model.claude.id=anthropic.claude-v2
 aws.bedrock.model.claude.temperature=0.5
 aws.bedrock.model.claude.maxTokensToSample=100
 ```
@@ -59,7 +59,7 @@ aws.bedrock.model.claude.maxTokensToSample=100
 #### Jurassic model parameters
 
 ```properties 
-aws.bedrock.model.id=ai21.j2-mid-v1
+aws.bedrock.model.jurassic.id=ai21.j2-mid-v1
 aws.bedrock.model.jurassic.maxTokens=200
 aws.bedrock.model.jurassic.temperature=0.5
 ```
@@ -67,7 +67,7 @@ aws.bedrock.model.jurassic.temperature=0.5
 #### Llama2 model parameters
 
 ```properties
-aws.bedrock.model.id=anthropic.llama2-v1
+aws.bedrock.model.llama2.id=anthropic.llama2-v1
 aws.bedrock.model.llama2.maxTokens=200
 aws.bedrock.model.llama2.temperature=0.5
 ```
@@ -75,14 +75,14 @@ aws.bedrock.model.llama2.temperature=0.5
 #### Titan model parameters
 
 ```properties
-aws.bedrock.model.id=amazon.titan-text-express-v1
-aws.bedrock.model.llama2.maxTokens=4096
-aws.bedrock.model.llama2.temperature=0.0
+aws.bedrock.model.titan.id=amazon.titan-text-express-v1
+aws.bedrock.model.titan.maxTokens=4096
+aws.bedrock.model.titan.temperature=0.0
 ```
 
 ### Usage
 
-Once activated, the Service can be autowired and used as below.
+Once activated, a Service can be autowired and used as below.
 
 ```java
 @RestController
@@ -92,7 +92,7 @@ public class ClaudeController {
 
 
     @Autowired
-    public ClaudeController(ClaudeService claudeService) {
+    public ClaudeController(@ClaudeService claudeService) {
         this.claudeService = claudeService;
     }
 
@@ -106,6 +106,9 @@ public class ClaudeController {
     }
 }
 ```
+
+If you activate more than one model, then you will need to use the [@Qualifier](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/beans/factory/annotation/Qualifier.html) annotation to eliminate ambiguity when choosing to inject by the [BedrockService](src/main/java/io/clue2solve/aws/bedrock/springboot/starter/service/BedrockService.java) interface. See [@Qualifier vs @Primary with Examples](https://javainfinite.com/spring-boot/qualifier-vs-primary-with-examples/) for background.
+You may not activate more than one model variant from a single provider.
 
 You might also want to take a look at and/or run the Service [tests](src/test/java/io/clue2solve/aws/bedrock/springboot/starter/service/impl).  To do that, make sure you've set the appropriate `AWS_*` environment variables, then execute
 

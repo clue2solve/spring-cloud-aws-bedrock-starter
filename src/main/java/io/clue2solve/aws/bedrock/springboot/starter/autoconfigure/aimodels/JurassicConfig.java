@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 @Conditional(OnJurassic.class)
 public class JurassicConfig {
 
-	@Bean
+	@Bean(name = "jurassicService")
 	public BedrockService jurassicService(BedrockRuntimeClient client, JurassicProperties properties) {
 		return new JurassicService(client, properties);
 	}

@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 @Conditional(OnClaude.class)
 public class ClaudeConfig {
 
-	@Bean
+	@Bean(name = "claudeService")
 	public BedrockService claudeService(BedrockRuntimeClient client, ClaudeProperties properties) {
 		return new ClaudeService(client, properties);
 	}

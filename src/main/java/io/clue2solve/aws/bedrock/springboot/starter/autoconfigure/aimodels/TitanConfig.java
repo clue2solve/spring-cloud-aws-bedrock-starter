@@ -12,7 +12,7 @@ import software.amazon.awssdk.services.bedrockruntime.BedrockRuntimeClient;
 @Conditional(OnTitan.class)
 public class TitanConfig {
 
-	@Bean
+	@Bean(name = "titanService")
 	public BedrockService titanService(BedrockRuntimeClient client, TitanProperties properties) {
 		return new TitanService(client, properties);
 	}
