@@ -12,20 +12,43 @@ import software.amazon.awssdk.core.SdkBytes;
 import software.amazon.awssdk.services.bedrockruntime.BedrockRuntimeClient;
 import software.amazon.awssdk.services.bedrockruntime.model.InvokeModelRequest;
 
+/**
+ * Service class for Llama - Implementation of BedrockService
+ */
 public class LlamaService implements BedrockService {
 
+	/**
+	 * Logger
+	 */
 	private static final Logger log = LoggerFactory.getLogger(LlamaService.class);
 
+	/**
+	 * BedrockRuntimeClient
+	 */
 	private final BedrockRuntimeClient client;
 
+	/**
+	 * LlamaProperties
+	 */
 	private final LlamaProperties properties;
 
+	/**
+	 * Constructor
+	 * @param client BedrockRuntimeClient
+	 * @param properties LlamaProperties
+	 */
 	public LlamaService(BedrockRuntimeClient client, LlamaProperties properties) {
 		this.client = client;
 		this.properties = properties;
 		log.info("Instantiating LlamaService");
 	}
 
+	/**
+	 * Invoke the model
+	 * @param prompt String
+	 * @return String
+	 * @throws JsonProcessingException JsonProcessingException
+	 */
 	@Override
 	public String invoke(String prompt) throws JsonProcessingException {
 		try {

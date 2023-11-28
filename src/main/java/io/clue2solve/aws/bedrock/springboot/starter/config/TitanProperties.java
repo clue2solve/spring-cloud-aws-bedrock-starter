@@ -9,6 +9,17 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Sample properties
+ * ws.bedrock.model.titan.id=amazon.titan-text-express-v1
+ * aws.bedrock.model.titan.temperature=0.5
+ * aws.bedrock.model.titan.topP=0.9
+ * aws.bedrock.model.titan.maxTokens=100
+ * aws.bedrock.model.titan.stopSequences=Human:,
+ * Assistant:
+ *
+ * @see <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-titan.html">...</a>
+ */
 @Validated
 @ConfigurationProperties(prefix = "aws.bedrock.model.titan")
 public record TitanProperties(@Pattern(
@@ -16,6 +27,14 @@ public record TitanProperties(@Pattern(
 		@DecimalMin("0.0") @DecimalMax("1.0") Double temperature, @DecimalMin("0.0") @DecimalMax("1.0") Double topP,
 		@Min(1) @Max(8192) Integer maxTokens, @Nullable List<String> stopSequences) {
 
+	/**
+	 * Constructor
+	 * @param id String
+	 * @param temperature Double
+	 * @param topP Double
+	 * @param maxTokens Integer
+	 * @param stopSequences List<String>
+	 */
 	public TitanProperties(String id, Double temperature, Double topP, Integer maxTokens, List<String> stopSequences) {
 		this.id = Optional.ofNullable(id).orElse("amazon.titan-text-express-v1");
 		this.temperature = Optional.ofNullable(temperature).orElse(0.0);

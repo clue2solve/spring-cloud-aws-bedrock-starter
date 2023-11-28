@@ -12,20 +12,43 @@ import software.amazon.awssdk.services.bedrockruntime.model.InvokeModelRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
+/**
+ * Service class for Claude - Implementation of BedrockService
+ */
 public class ClaudeService implements BedrockService {
 
+	/**
+	 * Logger
+	 */
 	private static final Logger log = LoggerFactory.getLogger(ClaudeService.class);
 
+	/**
+	 * BedrockRuntimeClient
+	 */
 	private final BedrockRuntimeClient client;
 
+	/**
+	 * ClaudeProperties
+	 */
 	private final ClaudeProperties properties;
 
+	/**
+	 * Constructor
+	 * @param client BedrockRuntimeClient
+	 * @param properties ClaudeProperties
+	 */
 	public ClaudeService(BedrockRuntimeClient client, ClaudeProperties properties) {
 		this.client = client;
 		this.properties = properties;
 		log.info("Instantiating ClaudeService");
 	}
 
+	/**
+	 * Invoke the model
+	 * @param prompt String
+	 * @return String
+	 * @throws JsonProcessingException JsonProcessingException
+	 */
 	@Override
 	public String invoke(String prompt) throws JsonProcessingException {
 		try {

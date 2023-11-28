@@ -9,10 +9,19 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * Configuration class for Claude
+ */
 @Configuration
 @Conditional(OnClaude.class)
 public class ClaudeConfig {
 
+	/**
+	 * Bean for ClaudeService
+	 * @param client BedrockRuntimeClient
+	 * @param properties ClaudeProperties
+	 * @return BedrockService
+	 */
 	@Bean(name = "claudeService")
 	public BedrockService claudeService(BedrockRuntimeClient client, ClaudeProperties properties) {
 		return new ClaudeService(client, properties);

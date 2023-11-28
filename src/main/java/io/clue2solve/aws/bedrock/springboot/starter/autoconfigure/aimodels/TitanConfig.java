@@ -8,10 +8,19 @@ import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
 import software.amazon.awssdk.services.bedrockruntime.BedrockRuntimeClient;
 
+/**
+ * Configuration class for Titan
+ */
 @Configuration
 @Conditional(OnTitan.class)
 public class TitanConfig {
 
+	/**
+	 * Bean for TitanService
+	 * @param client BedrockRuntimeClient
+	 * @param properties TitanProperties
+	 * @return BedrockService
+	 */
 	@Bean(name = "titanService")
 	public BedrockService titanService(BedrockRuntimeClient client, TitanProperties properties) {
 		return new TitanService(client, properties);
