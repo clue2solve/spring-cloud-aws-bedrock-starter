@@ -12,20 +12,41 @@ import software.amazon.awssdk.services.bedrockruntime.model.InvokeModelRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
+/**
+ * Service class for Jurassic - Implementation of BedrockService
+ */
 public class JurassicService implements BedrockService {
 
+	/** Logger */
 	private static final Logger log = LoggerFactory.getLogger(JurassicService.class);
 
+	/**
+	 * BedrockRuntimeClient
+	 */
 	private final BedrockRuntimeClient client;
 
+	/**
+	 * JurassicProperties
+	 */
 	private final JurassicProperties properties;
 
+	/**
+	 * Constructor
+	 * @param client
+	 * @param properties
+	 */
 	public JurassicService(BedrockRuntimeClient client, JurassicProperties properties) {
 		this.client = client;
 		this.properties = properties;
 		log.info("Instantiating JurassicService");
 	}
 
+	/**
+	 * Invoke the model
+	 * @param prompt
+	 * @return
+	 * @throws JsonProcessingException
+	 */
 	@Override
 	public String invoke(String prompt) throws JsonProcessingException {
 		try {

@@ -7,6 +7,9 @@ import io.clue2solve.aws.bedrock.springboot.starter.config.TitanProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * Configuration class for ModelProperties
+ */
 @Configuration
 @EnableConfigurationProperties({ ClaudeProperties.class, JurassicProperties.class, LlamaProperties.class,
 		TitanProperties.class })

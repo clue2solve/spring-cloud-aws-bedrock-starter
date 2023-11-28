@@ -13,20 +13,43 @@ import software.amazon.awssdk.core.SdkBytes;
 import software.amazon.awssdk.services.bedrockruntime.BedrockRuntimeClient;
 import software.amazon.awssdk.services.bedrockruntime.model.InvokeModelRequest;
 
+/**
+ * Service class for Titan - Implementation of BedrockService
+ */
 public class TitanService implements BedrockService {
 
+	/**
+	 * Logger
+	 */
 	private static final Logger log = LoggerFactory.getLogger(TitanService.class);
 
+	/**
+	 * BedrockRuntimeClient
+	 */
 	private final BedrockRuntimeClient client;
 
+	/**
+	 * TitanProperties
+	 */
 	private final TitanProperties properties;
 
+	/**
+	 * Constructor
+	 * @param client BedrockRuntimeClient
+	 * @param properties TitanProperties
+	 */
 	public TitanService(BedrockRuntimeClient client, TitanProperties properties) {
 		this.client = client;
 		this.properties = properties;
 		log.info("Instantiating TitanService");
 	}
 
+	/**
+	 * Invoke the model
+	 * @param prompt String
+	 * @return String
+	 * @throws JsonProcessingException JsonProcessingException
+	 */
 	@Override
 	public String invoke(String prompt) throws JsonProcessingException {
 		try {

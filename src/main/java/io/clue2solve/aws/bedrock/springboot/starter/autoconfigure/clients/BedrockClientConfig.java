@@ -12,25 +12,46 @@ import software.amazon.awssdk.services.bedrock.BedrockClient;
 import software.amazon.awssdk.services.bedrockruntime.BedrockRuntimeAsyncClient;
 import software.amazon.awssdk.services.bedrockruntime.BedrockRuntimeClient;
 
+/**
+ * Configuration class for BedrockClient
+ */
 @Configuration
 public class BedrockClientConfig {
 
+	/**
+	 * AwsCredentialsProvider
+	 */
 	private AwsCredentialsProvider awsCredentialsProvider;
 
+	/**
+	 * Region
+	 */
 	@Value("${aws.region}")
 	private String region;
 
+	/**
+	 * Constructor
+	 * @param awsCredentialsProvider AwsCredentialsProvider
+	 */
 	@Autowired
 	public BedrockClientConfig(AwsCredentialsProvider awsCredentialsProvider) {
 		this.awsCredentialsProvider = awsCredentialsProvider;
 	}
 
+	/**
+	 * Bean for BedrockClient
+	 * @return BedrockClient
+	 */
 	@Bean
 	@ConditionalOnProperty(name = "bedrock.client.type", havingValue = "sync")
 	public BedrockClient bedrockClient() {
 		return BedrockClient.builder().region(Region.of(region)).credentialsProvider(awsCredentialsProvider).build();
 	}
 
+	/**
+	 * Bean for BedrockRuntimeClient
+	 * @return BedrockRuntimeClient
+	 */
 	@Bean
 	public BedrockRuntimeClient bedrockRuntimeClient() {
 		return BedrockRuntimeClient.builder()
@@ -39,6 +60,10 @@ public class BedrockClientConfig {
 			.build();
 	}
 
+	/**
+	 * Bean for BedrockRuntimeAsyncClient
+	 * @return BedrockRuntimeAsyncClient
+	 */
 	@Bean
 	@ConditionalOnProperty(name = "bedrock.client.type", havingValue = "async")
 	public BedrockRuntimeAsyncClient bedrockRuntimeAsyncClient() {
@@ -48,6 +73,10 @@ public class BedrockClientConfig {
 			.build();
 	}
 
+	/**
+	 * Bean for BedrockAsyncClient
+	 * @return BedrockAsyncClient
+	 */
 	@Bean
 	@ConditionalOnProperty(name = "bedrock.client.type", havingValue = "async")
 	public BedrockAsyncClient bedrockAsyncClient() {

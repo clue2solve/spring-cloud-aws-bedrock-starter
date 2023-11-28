@@ -17,10 +17,20 @@ import java.util.Optional;
 @Validated
 @ConfigurationProperties(prefix = "aws.bedrock.model.jurassic")
 public record JurassicProperties(@Pattern(
+		/**
+		 * Model ID
+		 */
 		regexp = "ai21.j2-grande-instruct|ai21.j2-jumbo-instruct|ai21.j2-mid|ai21.j2-mid-v1|ai21.j2-ultra|ai21.j2-ultra-v1") String id,
 		@Nullable String prePrompt, @Min(1) @Max(8192) Integer maxTokens,
 		@DecimalMin("0.0") @DecimalMax("1.0") Double temperature) {
 
+	/**
+	 * Constructor
+	 * @param id String
+	 * @param prePrompt String
+	 * @param maxTokens Integer
+	 * @param temperature Double
+	 */
 	public JurassicProperties(String id, String prePrompt, Integer maxTokens, Double temperature) {
 		this.id = Optional.ofNullable(id).orElse("ai21.j2-mid-v1");
 		this.prePrompt = Optional.ofNullable(prePrompt).orElse("Human: ");

@@ -17,6 +17,9 @@ import org.springframework.test.context.junit.jupiter.EnabledIf;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test for Service class for Claude - Implementation of BedrockService
+ */
 @SpringBootTest
 @TestPropertySource(properties = { "aws.region=us-west-2", "aws.bedrock.model.claude.id=anthropic.claude-v2" })
 @EnabledIf(

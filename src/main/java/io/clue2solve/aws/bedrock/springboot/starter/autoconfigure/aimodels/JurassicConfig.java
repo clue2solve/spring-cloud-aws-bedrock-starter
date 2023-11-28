@@ -9,10 +9,19 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * Configuration class for Jurassic
+ */
 @Configuration
 @Conditional(OnJurassic.class)
 public class JurassicConfig {
 
+	/**
+	 * Bean for JurassicService
+	 * @param client BedrockRuntimeClient
+	 * @param properties JurassicProperties
+	 * @return BedrockService
+	 */
 	@Bean(name = "jurassicService")
 	public BedrockService jurassicService(BedrockRuntimeClient client, JurassicProperties properties) {
 		return new JurassicService(client, properties);
