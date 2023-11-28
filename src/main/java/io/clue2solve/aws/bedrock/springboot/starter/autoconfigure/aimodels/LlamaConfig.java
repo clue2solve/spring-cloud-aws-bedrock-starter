@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 @ConditionalOnProperty(name = "aws.bedrock.model.llama.id", havingValue = "meta.llama2-13b-chat-v1")
 public class LlamaConfig {
 
-	@Bean
+	@Bean(name = "llamaService")
 	public BedrockService llamaService(BedrockRuntimeClient client, LlamaProperties properties) {
 		return new LlamaService(client, properties);
 	}
