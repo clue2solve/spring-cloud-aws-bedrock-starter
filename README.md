@@ -92,7 +92,7 @@ public class ClaudeController {
 
 
     @Autowired
-    public ClaudeController(@ClaudeService claudeService) {
+    public ClaudeController(ClaudeService claudeService) {
         this.claudeService = claudeService;
     }
 
