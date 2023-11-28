@@ -10,7 +10,7 @@
     </parent>
     <groupId>io.clue2solve</groupId>
     <artifactId>spring-cloud-aws-bedrock-starter</artifactId>
-    <version>0.0.2.SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
     <name>spring-cloud-aws-bedrock-starter</name>
     <description>Spring Cloud Starter for AWS Bedrock</description>
     <properties>
