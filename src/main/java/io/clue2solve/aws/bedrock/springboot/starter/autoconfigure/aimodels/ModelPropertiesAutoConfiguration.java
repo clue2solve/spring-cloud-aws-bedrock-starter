@@ -8,7 +8,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Configuration class for ModelProperties
+ * Auto-configuration for all model variant properties.
  */
 @Configuration
 @EnableConfigurationProperties({ ClaudeProperties.class, JurassicProperties.class, LlamaProperties.class,

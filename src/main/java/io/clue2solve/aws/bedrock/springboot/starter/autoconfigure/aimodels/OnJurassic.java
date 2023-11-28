@@ -16,7 +16,7 @@ class OnJurassic extends AnyNestedCondition {
 	}
 
 	/**
-	 * Condition for Jurassic v2
+	 * Condition for Jurassic ai21.j2-grande-instruct
 	 */
 	@ConditionalOnProperty(name = "aws.bedrock.model.jurassic.id", havingValue = "ai21.j2-grande-instruct")
 	static class OnJurassic2GrandeInstruct {
@@ -24,7 +24,7 @@ class OnJurassic extends AnyNestedCondition {
 	}
 
 	/**
-	 * Condition for Jurassic v1
+	 * Condition for Jurassic ai21.j2-jumbo-instruct
 	 */
 	@ConditionalOnProperty(name = "aws.bedrock.model.jurassic.id", havingValue = "ai21.j2-jumbo-instruct")
 	static class OnJurassic2JumboInstruct {
@@ -32,7 +32,7 @@ class OnJurassic extends AnyNestedCondition {
 	}
 
 	/**
-	 * Condition for Jurassic Instant v2
+	 * Condition for Jurassic Instant ai21.j2-mid
 	 */
 	@ConditionalOnProperty(name = "aws.bedrock.model.jurassic.id", havingValue = "ai21.j2-mid")
 	static class OnJurassic2Mid {
@@ -40,7 +40,7 @@ class OnJurassic extends AnyNestedCondition {
 	}
 
 	/**
-	 * Condition for Jurassic Instant v2
+	 * Condition for Jurassic Instant ai21.j2-mid-v1
 	 */
 	@ConditionalOnProperty(name = "aws.bedrock.model.jurassic.id", havingValue = "ai21.j2-mid-v1")
 	static class OnJurassic2MidV1 {
@@ -48,7 +48,7 @@ class OnJurassic extends AnyNestedCondition {
 	}
 
 	/**
-	 * Condition for Jurassic Instant v2
+	 * Condition for Jurassic Instant ai21.j2-ultra
 	 */
 	@ConditionalOnProperty(name = "aws.bedrock.model.jurassic.id", havingValue = "ai21.j2-ultra")
 	static class OnCJurassic2Ultra {
@@ -56,7 +56,7 @@ class OnJurassic extends AnyNestedCondition {
 	}
 
 	/**
-	 * Condition for Jurassic Instant v2
+	 * Condition for Jurassic Instant ai21.j2-ultra-v1
 	 */
 	@ConditionalOnProperty(name = "aws.bedrock.model.jurassic.idd", havingValue = "ai21.j2-ultra-v1")
 	static class OnCJurassic2UltraV1 {

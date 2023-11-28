@@ -16,7 +16,7 @@ class OnClaude extends AnyNestedCondition {
 	}
 
 	/**
-	 * Condition for Claude v2
+	 * Condition for Claude anthropic.claude-v2
 	 */
 	@ConditionalOnProperty(name = "aws.bedrock.model.claude.id", havingValue = "anthropic.claude-v2")
 	static class OnClaudeV2 {
@@ -24,7 +24,7 @@ class OnClaude extends AnyNestedCondition {
 	}
 
 	/**
-	 * Condition for Claude v1
+	 * Condition for Claude anthropic.claude-v1
 	 */
 	@ConditionalOnProperty(name = "aws.bedrock.model.claude.id", havingValue = "anthropic.claude-v1")
 	static class OnClaudeV1 {
@@ -32,7 +32,7 @@ class OnClaude extends AnyNestedCondition {
 	}
 
 	/**
-	 * Condition for Claude Instant v2
+	 * Condition for Claude Instant anthropic.claude-instant-v1
 	 */
 	@ConditionalOnProperty(name = "aws.bedrock.model.claude.id", havingValue = "anthropic.claude-instant-v1")
 	static class OnClaudeInstantV1 {

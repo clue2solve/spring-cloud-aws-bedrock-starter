@@ -16,7 +16,7 @@ class OnTitan extends AnyNestedCondition {
 	}
 
 	/**
-	 * Condition for Titan v2
+	 * Condition for Titan amazon.titan-tg1-large
 	 */
 	@ConditionalOnProperty(name = "aws.bedrock.model.titan.id", havingValue = "amazon.titan-tg1-large")
 	static class OnTitanLarge {
@@ -24,7 +24,7 @@ class OnTitan extends AnyNestedCondition {
 	}
 
 	/**
-	 * Condition for Titan v1
+	 * Condition for Titan amazon.titan-tg1-medium
 	 */
 	@ConditionalOnProperty(name = "aws.bedrock.model.titan.id", havingValue = "amazon.titan-tg1-medium")
 	static class OnTitanMedium {
@@ -32,7 +32,7 @@ class OnTitan extends AnyNestedCondition {
 	}
 
 	/**
-	 * Condition for Titan Instant v2
+	 * Condition for Titan Instant amazon.titan-embed-g1-text-02
 	 */
 	@ConditionalOnProperty(name = "aws.bedrock.model.titan.id", havingValue = "amazon.titan-embed-g1-text-02")
 	static class OnTitanTextEmbeddingsV2 {
@@ -40,7 +40,7 @@ class OnTitan extends AnyNestedCondition {
 	}
 
 	/**
-	 * Condition for Titan Instant v2
+	 * Condition for Titan Instant amazon.titan-text-lite-v1
 	 */
 	@ConditionalOnProperty(name = "aws.bedrock.model.titan.id", havingValue = "amazon.titan-text-lite-v1")
 	static class OnTitanTextLiteV1 {
@@ -48,7 +48,7 @@ class OnTitan extends AnyNestedCondition {
 	}
 
 	/**
-	 * Condition for Titan Instant v2
+	 * Condition for Titan Instant amazon.titan-text-express-v1
 	 */
 	@ConditionalOnProperty(name = "aws.bedrock.model.titan.id", havingValue = "amazon.titan-text-express-v1")
 	static class OnTitanTextExpressV1 {
@@ -56,7 +56,7 @@ class OnTitan extends AnyNestedCondition {
 	}
 
 	/**
-	 * Condition for Titan Instant v2
+	 * Condition for Titan Instant amazon.titan-embed-text-v1
 	 */
 	@ConditionalOnProperty(name = "aws.bedrock.model.titan.id", havingValue = "amazon.titan-embed-text-v1")
 	static class OnTitanTextEmbeddingsV1 {
