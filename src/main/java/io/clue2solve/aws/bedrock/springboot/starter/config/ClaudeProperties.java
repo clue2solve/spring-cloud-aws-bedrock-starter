@@ -10,13 +10,10 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Sample properties
- * aws.bedrock.model.claude.id=anthropic.claude-v2
+ * Sample properties aws.bedrock.model.claude.id=anthropic.claude-v2
  * aws.bedrock.model.claude.prePrompt=Human:
- * aws.bedrock.model.claude.postPrompt=Assistant:
- * aws.bedrock.model.claude.maxTokens=100
- * aws.bedrock.model.claude.temperature=0.5
- * aws.bedrock.model.claude.stopSequences=Human:,
+ * aws.bedrock.model.claude.postPrompt=Assistant: aws.bedrock.model.claude.maxTokens=100
+ * aws.bedrock.model.claude.temperature=0.5 aws.bedrock.model.claude.stopSequences=Human:,
  * Assistant:
  *
  * @see <a href="https://docs.ai21.com/reference/claude-complete-api-ref">...</a>

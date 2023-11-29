@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @EnableConfigurationProperties({ ClaudeProperties.class, JurassicProperties.class, LlamaProperties.class,
-		TitanProperties.class })
+		StableDiffusionConfig.class, TitanProperties.class })
 public class ModelPropertiesAutoConfiguration {
 
 }
