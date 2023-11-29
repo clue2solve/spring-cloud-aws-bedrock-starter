@@ -34,7 +34,9 @@ class StableDiffusionServiceTest {
 			String response = service.invoke(
 					"Draw me a cartoon-like whale-shark in neon blue with bright yellow spots floating in the ocean of the cosmos on its way to meet its mate.");
 			Assertions.assertNotNull(response);
-			log.info(response);
+			log.info("Encoded imageString: {}", response);
+			service.render(response);
+			log.info("Look for image in {}", System.getProperty("java.io.tmpdir"));
 		}
 		catch (JsonProcessingException jpe) {
 			fail("Couldn't process request");
