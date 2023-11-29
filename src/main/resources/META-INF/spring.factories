@@ -3,5 +3,6 @@ io.clue2solve.aws.bedrock.springboot.starter.autoconfigure.clients.BedrockClient
 io.clue2solve.aws.bedrock.springboot.starter.autoconfigure.ClaudeConfig,\
 io.clue2solve.aws.bedrock.springboot.starter.autoconfigure.JurassicConfig,\
 io.clue2solve.aws.bedrock.springboot.starter.autoconfigure.LlamaConfig,\
+io.clue2solve.aws.bedrock.springboot.starter.autoconfigure.StableDiffusionConfig,\
 io.clue2solve.aws.bedrock.springboot.starter.autoconfigure.TitanConfig,\
 io.clue2solve.aws.bedrock.springboot.starter.autoconfigure.ModelPropertiesAutoConfiguration
