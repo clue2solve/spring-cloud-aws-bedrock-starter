@@ -91,6 +91,8 @@ aws.bedrock.model.stability.seed=75
 
 ### Usage
 
+There is a [Companion Demo Project](https://github.com/clue2solve/BedrockSpringBootStarterDemo) to see how to use it. You can clone it and run it locally.
+
 Once activated, a Service can be autowired and used as below.
 
 ```java
