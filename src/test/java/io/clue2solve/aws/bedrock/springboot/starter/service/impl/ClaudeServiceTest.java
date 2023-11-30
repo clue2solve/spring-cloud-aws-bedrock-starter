@@ -1,5 +1,6 @@
 package io.clue2solve.aws.bedrock.springboot.starter.service.impl;
 
+import io.clue2solve.aws.bedrock.springboot.starter.autoconfigure.aimodels.BedrockAutoConfiguration;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
