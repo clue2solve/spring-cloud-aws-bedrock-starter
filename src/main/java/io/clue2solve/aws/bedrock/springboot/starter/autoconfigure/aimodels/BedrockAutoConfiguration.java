@@ -114,7 +114,7 @@ public class BedrockAutoConfiguration {
 	 * @return BedrockService
 	 */
 	@Bean(name = "llamaService")
-	@ConditionalOnProperty(name = "aws.bedrock.model.llama.id", havingValue = "meta.llama2-13b-chat-v1")
+	@Conditional(OnLlama.class)
 	public BedrockService llamaService(BedrockRuntimeClient client, LlamaProperties properties) {
 		return new LlamaService(client, properties);
 	}
