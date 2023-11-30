@@ -1,6 +1,7 @@
 package io.clue2solve.aws.bedrock.springboot.starter.service.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import io.clue2solve.aws.bedrock.springboot.starter.autoconfigure.aimodels.BedrockAutoConfiguration;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;

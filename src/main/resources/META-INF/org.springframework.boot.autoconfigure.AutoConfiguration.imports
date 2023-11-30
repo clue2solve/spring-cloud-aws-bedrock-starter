@@ -1,1 +1,1 @@
-io.clue2solve.aws.bedrock.springboot.starter.autoconfigure.aimodels.ModelPropertiesAutoConfiguration
+io.clue2solve.aws.bedrock.springboot.starter.autoconfigure.aimodels.BedrockAutoConfiguration

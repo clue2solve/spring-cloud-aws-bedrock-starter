@@ -1,6 +1,7 @@
 package io.clue2solve.aws.bedrock.springboot.starter.service.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import io.clue2solve.aws.bedrock.springboot.starter.autoconfigure.aimodels.BedrockAutoConfiguration;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -22,7 +23,6 @@ import static org.junit.jupiter.api.Assertions.fail;
 @DisabledIf(
 		expression = "#{!environment.containsProperty('AWS_ACCESS_KEY_ID') || !environment.containsProperty('AWS_SECRET_ACCESS_KEY')}",
 		reason = "Must have AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY environment variables defined to execute this test!")
-
 class StableDiffusionServiceTest {
 
 	private final static Logger log = LoggerFactory.getLogger(StableDiffusionServiceTest.class);
